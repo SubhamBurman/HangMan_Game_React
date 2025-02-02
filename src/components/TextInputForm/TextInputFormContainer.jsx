@@ -1,36 +1,28 @@
-// container component for TextInputForm
-
 import { useState } from "react";
 import TextInputForm from "./TextInputForm";
-
-const TextInputFormContainer = (onSubmit) => {
-    const [value, setValue] = useState("")
-    const [InputType, setInputType] = useState("text")
-  
-    function handelFormSubmit(e){
-      e.preventDefault();
-      console.log("Form Submitted", value)
-      onSubmit ?. (value);
-      
-  }
-  
-    function handelTextInputChange(e){
-      console.log("text input change");
-      console.log(e.target.value);
-      setValue(e.target.value);
-      
-      
+// Container component for TextInputForm
+function TextInputFormContainer({ onSubmit}) {
+    const [value, setValue] = useState('');
+    const [inputType, setInputType] = useState('password');
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        console.log('Form submitted', value);
+        onSubmit?.(value); // if onSubmit is defined, call it with the value
     }
-  
-  return (
-    <TextInputForm
-    handelFormSubmit={handelFormSubmit}
-    handelTextInputChange={handelTextInputChange}
-    value={value}
-    InputType={InputType}
-    setInputType={setInputType}
-    />
-  )  
+    function handleTextInputChange(event) {
+        console.log('Text input changed');
+        console.log(event.target.value);
+        setValue(event.target.value); // whenever I Type in the input field, it will update the value
+    }
+    return (
+        // Calling the presentation layer
+        <TextInputForm
+            handleFormSubmit={handleFormSubmit}
+            handleTextInputChange={handleTextInputChange}
+            value={value}
+            inputType={inputType}
+            setInputType={setInputType}
+        />
+    );
 }
-
-export default TextInputFormContainer
+export default TextInputFormContainer;

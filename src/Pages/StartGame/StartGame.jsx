@@ -1,14 +1,18 @@
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import TextInputFormContainer from "../../components/TextInputForm/TextInputFormContainer";
+function StartGame() {
 
-const StartGame = () => {
-  return (
-    <div>
-      <h1>Start Game</h1>
-      <Link to="/play">Play Game</Link>
+    const navigate = useNavigate();
 
-    </div>
-    
-  )
+    function handelSubmit() {
+        navigate('/play');
+    }
+
+    return (
+        <div>
+            <h1>Start Game</h1>
+             <TextInputFormContainer onSubmit={handelSubmit}/>
+        </div>
+    );
 }
-
-export default StartGame
+export default StartGame;
