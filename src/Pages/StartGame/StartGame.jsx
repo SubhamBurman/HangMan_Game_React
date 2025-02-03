@@ -4,8 +4,10 @@ function StartGame() {
 
     const navigate = useNavigate();
 
-    function handelSubmit() {
-        navigate('/play');
+    function handelSubmit(value) {
+        console.log("Value coming from the hidden form is", value);  
+        
+        navigate('/play', {state: {wordSelected: value}});
     }
 
     return (
